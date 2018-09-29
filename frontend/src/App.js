@@ -52,7 +52,10 @@ class App extends React.Component {
 
         axios({
             method: 'POST',
-            url: `http://127.0.0.1:15000/users/${this.state.user._id}`
+            body: {
+                
+            },
+            url: `http://127.0.0.1:15000/users/${this.state.user._id}/devices/${this.state.selectedDevice._id}`
         })
     }
 

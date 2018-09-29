@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export default class RegisterForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
+    constructor(props) {
+        super(props)
+        this.state = {
         name: '',
         password: '',
         email: '',
     }
 
     this.handleRegister = this.handleRegister.bind(this)
-  }
+}
 
-  handleRegister(e) {
+handleRegister(e) {
     axios(
         {
             method: 'POST',
@@ -24,16 +25,15 @@ export default class RegisterForm extends Component {
                 devices: []
             }
         }
-    )
+        )
     e.preventDefault()
-  }
+}
 
-  render() {
+render() {
     return (
-      <div id="registerPage">
       <div>
-
-      <form onSubmit={e => this.handleRegister(e)}>
+      <div>
+        <form onSubmit={e => this.handleRegister(e)}>
         <label>
             Name <input type="text" value={this.state.name} onChange={e => {this.setState({name: e.target.value})}} />
         </label>
@@ -44,6 +44,8 @@ export default class RegisterForm extends Component {
             Email <input type="email" value={this.state.email} onChange={e => {this.setState({email: e.target.value})}} />
         </label>
         <button onClick={e => this.handleRegister(e)}>Register</button>
+        <br />
+        <Link to="/login">Already a member?</Link>
       </form>
       </div>
       </div>
