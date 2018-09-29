@@ -1,7 +1,8 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './creative.css';
 import MessageList from './components/MessageList'
 import SendMessageForm from './components/SendMessageForm'
-import Header from './components/Header'
 import LandingPage from './components/LandingPage'
 import { Route, BrowserRouter } from 'react-router-dom'
 
@@ -25,7 +26,7 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <div className="app">
-                    <Header />
+
                         <Route exact path='/' component={LandingPage} />
 
                         <Route path='/device/:id' render={() => (
@@ -34,7 +35,7 @@ class App extends React.Component {
                                 <SendMessageForm message={this.state.message} handleInput={this.handleInput} />
                             </div>
                         )}/>
-                    
+
                     <Route path="/devices" render={() => (
                         <div>
                             Devices
