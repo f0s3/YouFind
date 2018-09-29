@@ -9,6 +9,7 @@ const User = require('./user.js');
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(cors());
 
 //DONE: /login
@@ -30,11 +31,13 @@ app.delete('/users/:uid', (req, res) => {
 
 //DONE: /register
 app.post('/register', (req,res) => {
-  new User({
+  console.log(req.body)
+  User.create({
+    _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     password: req.body.password,
     devices: req.body.devices
-  }).save().then(r=>res.json(r))
+  }).then(r=>res.json(r))
 })
 
 //DONE: /users
@@ -47,7 +50,6 @@ app.get('/users/:uid', (req, res) => {
 User.findById(req.params.uid)
   .then(user => res.json(user))
 });
-
 
 //DONE: /users/uid/devices
 app.get('/users/:uid/devices', (req, res) => {
@@ -68,9 +70,10 @@ app.post('/users/:uid/devices/:deviceName', (req, res) => {
   })
 });
 
-
-app.delete('devices/remove', (req, res) => {
-  //mongo stuff
+app.delete('/users/:uid/devices/:id', (req, res) => {
+  User.findOne({_id: req.params.uid}).then((user) => {
+    res.json(user.devices.splice())
+  })
 });
 
 app.listen(port, () => console.log('App is listening on port '+ port +'!'))
