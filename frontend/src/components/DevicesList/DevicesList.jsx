@@ -11,9 +11,7 @@ export default class DevicesBox extends Component {
   render() {
     return (
       <div>
-        {this.props.devices.map((device, index) => {
-          return <p onClick={device => this.props.selectDevice(device)} key={index}>{device.name}</p>
-        })}
+        
       </div>
     )
   }

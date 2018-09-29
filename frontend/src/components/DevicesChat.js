@@ -26,27 +26,14 @@ export default class DevicesChat extends Component {
         console.log(this.state.message)
     }
 
-    openChat() {
-        this.setState({chatOpened: true})
-    }
-
-    selectDevice(device) {
-        this.setState({selectedDevice: device})
-    }
-
     render() {
         return (
         <div>
-            <div id="devices">
-                <DevicesList openChat={this.openChat} selectDevice={device => this.selectDevice(device)} devices={this.props.user.devices}/>
-            </div>
-            <hr />
-            {this.state.chatOpened && (<div id="chat">
+         <div id="chat">
                 <h2>{this.state.selectedDevice.name}</h2>
                 <MessageList messages={this.selectedDevice.messages} />
                 <SendMessageForm message={this.state.message} handleInput={this.handleInput} />
             </div>
-            )}
         </div>
         )
     }
