@@ -4,21 +4,51 @@ import SendMessageForm from './components/SendMessageForm'
 import Header from './components/Header'
 import LandingPage from './components/LandingPage'
 import { Route, BrowserRouter } from 'react-router-dom'
+import DevicesChat from './components/DevicesChat'
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 
 class App extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            message: ''
+            user: {
+                name: 'this.state.name',
+                password: 'this.state.password',
+                devices: [
+                    {
+                        name: 'ERGO',
+                        messages: [
+                            {
+                                text: '',
+                                date: Date.now()
+                            }
+                        ]
+                    },
+                    {
+                        name: 'iPhone',
+                        messages: [{
+                                text: 'lost',
+                                date: Date.now()
+                            },
+                            {
+                                text: 'found',
+                                date: Date.now()
+                            },
+                            {
+                                text: 'deal',
+                                date: Date.now()
+                            }
+                    ]
+                    }
+                ]
+            }
         }
-
-        this.handleInput = this.handleInput.bind(this)
     }
 
-    handleInput(message) {
-        this.setState({message})
-        console.log(this.state.message)
+    setUser(user) {
+        this.setState({user})
     }
 
     render() {
@@ -26,23 +56,15 @@ class App extends React.Component {
             <BrowserRouter>
                 <div className="app">
                     <Header />
+                        <Route path='/login' render={() => <LoginForm setUser={user => this.setUser(user)} />}/>
+                        <Route path='/register' render={() => <RegisterForm />}/>
+                        
                         <Route exact path='/' component={LandingPage} />
 
-                        <Route path='/device/:id' render={() => (
-                            <div id="chat">
-                                <MessageList />
-                                <SendMessageForm message={this.state.message} handleInput={this.handleInput} />
-                            </div>
-                        )}/>
-                    
-                    <Route path="/devices" render={() => (
-                        <div>
-                            Devices
-                        </div>
-                    )} />
+                        <Route path='/devices' render={() => <DevicesChat user={this.state.user} />}/>
                 </div>
             </BrowserRouter>
-        );
+        )
     }
 }
 
