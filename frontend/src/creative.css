@@ -1,0 +1,104 @@
+/*!
+ * Start Bootstrap - Creative v5.0.1 (https://startbootstrap.com/template-overviews/creative)
+ * Copyright 2013-2018 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-creative/blob/master/LICENSE)
+ */
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+  color: white;
+  overflow-y: hidden;
+}
+
+hr {
+  max-width: 50px;
+  border-width: 3px;
+  border-color: #F05F40;
+}
+#mainNav .navbar-brand {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #F05F40;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+@media  {
+/*  #mainNav {
+    border-color: transparent;
+    background-color: transparent;
+  } */
+  #mainNav .navbar-brand {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+    color: #fff;
+  }
+  #logo {
+      height: 200px;
+      width: 200px;
+      margin-bottom: 100px;
+  }
+}
+
+header.masthead {
+  padding-top: 105rem;
+  padding-bottom: calc(10rem - 56px);
+  background-image: url("./header.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+
+
+
+header.masthead h1 {
+  font-size: 2rem;
+}
+
+
+
+@media  {
+  header.masthead p {
+    font-size: 1.15rem;
+  }
+}
+
+@media  {
+  header.masthead {
+    height: 100vh;
+    min-height: 650px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  header.masthead h1 {
+    font-size: 3rem;
+  }
+}
+
+
+
+
+/*portfolio-box was here*/
+
+
+.btn {
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 300px;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.btn-xl {
+  padding: 1rem 2rem;
+}
+
+.btn-primary {
+  background-color: #F05F40;
+  border-color: #F05F40;
+}

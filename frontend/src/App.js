@@ -1,7 +1,8 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './creative.css';
 import MessageList from './components/MessageList'
 import SendMessageForm from './components/SendMessageForm'
-import Header from './components/Header'
 import LandingPage from './components/LandingPage'
 import { Route, BrowserRouter, Redirect, Link } from 'react-router-dom'
 import DevicesChat from './components/DevicesChat'
