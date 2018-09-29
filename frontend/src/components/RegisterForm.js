@@ -13,18 +13,20 @@ export default class RegisterForm extends Component {
   }
 
   handleRegister(e) {
+      const name = this.state.name
     axios(
         {
             method: 'POST',
             url: 'http://127.0.0.1:15000/register',
             body: {
-                name: this.state.name,
+                name,
                 password: this.state.password,
                 devices: [
                     {
                         name: '',
                         messages: [
                             {
+                                author: name,
                                 text: '',
                                 date: Date.now()
                             }

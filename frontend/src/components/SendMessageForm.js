@@ -8,8 +8,6 @@ class SendMessageForm extends React.Component {
         }
     }
 
-
-
     render() {
         return (
             <form className="send-message-form" onSubmit={e => {
