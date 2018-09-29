@@ -16,7 +16,7 @@ export default class RegisterForm extends Component {
     axios(
         {
             method: 'POST',
-            url: '127.0.0.1:15000/register',
+            url: 'http://127.0.0.1:15000/register',
             body: {
                 name: this.state.name,
                 password: this.state.password,

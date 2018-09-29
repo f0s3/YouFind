@@ -16,7 +16,7 @@ export default class LoginForm extends Component {
     axios(
         {
             method: 'GET',
-            url: '127.0.0.1:15000/login',
+            url: 'http://127.0.0.1:15000/login',
             body: {
                 username: this.state.name,
                 password: this.state.password,
