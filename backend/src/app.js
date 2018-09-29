@@ -11,12 +11,13 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-//TODO: /login
-app.post('/login', (req, res) => {
-  User.find({name: req.body.username})
+//DONE: /login
+app.get('/login/:username/:password', (req, res) => {
+  User.findOne({name: req.params.username, password: req.params.password})
   .then(user => {
-    res.status(201).json(user)
-  }).catch(error => res.status(400))
+    if (user) res.status(201).json(user)
+    res.status(400).json({error: "Cannot find user"})
+  })
 });
 
 //DONE: /register
