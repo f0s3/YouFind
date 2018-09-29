@@ -4,19 +4,19 @@ export default class LandingPage extends Component {
   render() {
     return (
       <div>
-    <header class="masthead text-center text-black d-flex">
-          <div class="container my-auto">
-            <div class="row">
-              <div class="col-lg-12 mx-auto">
+    <header className="masthead text-center text-black d-flex">
+          <div className="container my-auto">
+            <div className="row">
+              <div className="col-lg-12 mx-auto">
                 <img src={logo} id="logo" />
-                <h1 class="text-uppercase">
+                <h1 className="text-uppercase">
                   <strong>In good people we trust</strong>
                 </h1>
                 <hr />
               </div>
-              <div class=" mx-auto">
-                <p class=" mb-5">If you lose your device, there will be more chances to get it back!</p>
-                <a class="btn btn-primary btn-xl js-scroll-trigger" href="/login">Get Started</a>
+              <div className=" mx-auto">
+                <p className=" mb-5">If you lose your device, there will be more chances to get it back!</p>
+                <a className="btn btn-primary btn-xl js-scroll-trigger" href="/login">Get Started</a>
               </div>
             </div>
           </div>

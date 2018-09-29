@@ -43,7 +43,7 @@ class App extends React.Component {
                 date: Date.now()
             }]
         }
-        
+
         this.setState({
             user: {
                 devices: this.state.user.devices.concat([newDevice])
@@ -60,12 +60,12 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <div className="app">
-                    <Header />
+
                         <Route path='/login' render={() => !this.state.user ? <LoginForm setUser={user => this.setUser(user)} /> : <Redirect to="/devices" />}/>
                         <Route path='/register' render={() => <RegisterForm />}/>
-                        
+
                         <Route exact path='/' component={LandingPage} />
-                                      
+
 
                         {/* <Route path='/devices' render={() => <DevicesChat user={this.state.user} />}/> */}
                         <Route path='/devices' render={() => (
