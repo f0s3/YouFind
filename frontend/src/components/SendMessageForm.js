@@ -12,7 +12,10 @@ class SendMessageForm extends React.Component {
 
     render() {
         return (
-            <form className="send-message-form" onSubmit={() => this.props.handleInput(this.state.message)}>
+            <form className="send-message-form" onSubmit={e => {
+                this.props.handleInput(this.state.message)
+                e.stopPropagation()
+                }}>
                 <input
                     value={this.state.message}
                     onChange={(e) => {this.setState({message: e.target.value})}}
