@@ -30,17 +30,43 @@ export default class LoginForm extends Component {
 
   render() {
     return (
+      <div className=" text-center text-black d-flex" id="loginPage">
+      <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div className="container">
+          <a className="navbar-brand js-scroll-trigger" href="/">uFind</a>
+          <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarResponsive">
+            <ul className="navbar-nav ml-auto">
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div>
+      <ul>
         <form onSubmit={e => this.handleLogin(e)}>
+        <h1 className="h3 mb-3 font-weight-normal">Authorize Yourself</h1>
+        <li>
             <label>
-                Name <input type="text" value={this.state.name} onChange={e => {this.setState({name: e.target.value})}} />
+              <input type="text" value={this.state.name} onChange={e => {this.setState({name: e.target.value})}} placeholder="Name" />
             </label>
+            </li>
+            <li>
             <label>
-                Password <input type="password" value={this.state.password} onChange={e => {this.setState({password: e.target.value})}} />
+                 <input type="password" value={this.state.password} onChange={e => {this.setState({password: e.target.value})}} placeholder="Password" />
             </label>
-            <button onClick={e => this.handleLogin(e)}>Login</button>
+            </li>
+            <li>
+            <button className="btn btn-secondary js-scroll-trigger" onClick={e => this.handleLogin(e)}>Login</button>
+            </li>
             <br />
             <Link to="/register">Not a member yet?</Link>
       </form>
+      </ul>
+      </div>
+      </div>
     )
   }
 }

@@ -49,7 +49,7 @@ render() {
       <div>
       <ul>
 
-        <form onSubmit={e => this.handleRegister(e)} className="form-register">
+        <form onSubmit={e => this.handleRegister(e)}>
         <h1 className="h3 mb-3 font-weight-normal">Register! It is free!</h1>
 
         <li>
@@ -70,12 +70,12 @@ render() {
 
 
         <li>
-        <button className="btn btn-primary js-scroll-trigger" onClick={e => this.handleRegister(e)}>Register</button>
+        <button className="btn btn-secondary js-scroll-trigger" onClick={e => this.handleRegister(e)}>Register</button>
         </li>
         <br />
 
         <Link to="/login">Already a member?</Link>
-    
+
       </form>
       </ul>
       </div>

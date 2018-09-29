@@ -68,6 +68,17 @@ header.masthead {
 
 }
 
+#loginPage {
+  height: 100%;
+  background-image: url("./header.jpg");
+  background-position: center center;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+}
+
 
 
 header.masthead h1 {
@@ -94,20 +105,6 @@ header.masthead h1 {
   }
 }
 
-.form-register {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-
-}
-.form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
 
 /*portfolio-box was here*/
 
@@ -133,4 +130,7 @@ header.masthead h1 {
 .btn-secondary {
   background-color: #007bff;
   border-color: #007bff;
+}
+.btn-landing{
+  margin-left: 10px;
 }
