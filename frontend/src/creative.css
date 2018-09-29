@@ -16,6 +16,11 @@ body {
   overflow-y: hidden;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
 hr {
   max-width: 50px;
   border-width: 3px;
@@ -57,6 +62,10 @@ header.masthead {
   background-image: url("./header.jpg");
   background-position: center center;
   background-size: cover;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
 }
 
 
@@ -85,8 +94,20 @@ header.masthead h1 {
   }
 }
 
+.form-register {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
 
-
+}
+.form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
 
 /*portfolio-box was here*/
 
@@ -97,7 +118,6 @@ header.masthead h1 {
   border: none;
   border-radius: 300px;
   padding: 5px 5px 5px 5px;
-  margin-left: 10px;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 

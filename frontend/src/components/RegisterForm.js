@@ -31,22 +31,53 @@ handleRegister(e) {
 
 render() {
     return (
+      <div className=" text-center text-black d-flex" id="registerPage">
+      <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div className="container">
+          <a className="navbar-brand js-scroll-trigger" href="/">uFind</a>
+          <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarResponsive">
+            <ul className="navbar-nav ml-auto">
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
       <div>
-      <div>
-        <form onSubmit={e => this.handleRegister(e)}>
+      <ul>
+
+        <form onSubmit={e => this.handleRegister(e)} className="form-register">
+        <h1 className="h3 mb-3 font-weight-normal">Register! It is free!</h1>
+
+        <li>
         <label>
-            Name <input type="text" value={this.state.name} onChange={e => {this.setState({name: e.target.value})}} />
+            <input type="text" value={this.state.name} onChange={e => {this.setState({name: e.target.value})}} placeholder="Name" />
         </label>
+        </li>
+        <li>
         <label>
-            Password <input type="password" value={this.state.password} onChange={e => {this.setState({password: e.target.value})}} />
+             <input type="email" value={this.state.email} onChange={e => {this.setState({email: e.target.value})}} placeholder="Email" />
         </label>
+        </li>
+        <li>
         <label>
-            Email <input type="email" value={this.state.email} onChange={e => {this.setState({email: e.target.value})}} />
+            <input type="password" value={this.state.password} onChange={e => {this.setState({password: e.target.value})}} placeholder="Password" />
         </label>
-        <button onClick={e => this.handleRegister(e)}>Register</button>
+        </li>
+
+
+        <li>
+        <button className="btn btn-primary js-scroll-trigger" onClick={e => this.handleRegister(e)}>Register</button>
+        </li>
         <br />
+
         <Link to="/login">Already a member?</Link>
+    
       </form>
+      </ul>
       </div>
       </div>
     )
