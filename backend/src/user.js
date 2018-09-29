@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/youfind');
+mongoose.connect('mongodb://f0s3:ofurig54@ds115533.mlab.com:15533/users');
 
 const User = new mongoose.Schema(
   {
-    name: String,
+    name: {type: String, unique: true},
     password: String,
     devices: [{
       name: String,

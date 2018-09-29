@@ -20,6 +20,14 @@ app.get('/login/:username/:password', (req, res) => {
   })
 });
 
+//DONE: /users/uid
+app.delete('/users/:uid', (req, res) => {
+  User.findByIdAndRemove(req.params.uid)
+  .then(user => {
+    res.sendStatus(204)
+  })
+})
+
 //DONE: /register
 app.post('/register', (req,res) => {
   new User({
@@ -41,16 +49,25 @@ User.findById(req.params.uid)
 });
 
 
-app.get('/devices/:id', (req, res) => {
-  if (req.params.id == 1) {
-    console.log(req.params.id)
-    res.send({messages: {text: 'test message'}});
-  }
-})
-
-app.post('/devices/add', (req, res) => {
-  //mongo stuff
+//DONE: /users/uid/devices
+app.get('/users/:uid/devices', (req, res) => {
+  User.findOne({_id: req.params.uid})
+  .then(user => {
+    if (user) res.status(201).json(user.devices)
+    else res.status(400).json({error: "Something went wrong."})
+  })
 });
+
+//DONE: /users/uid/devices/deviceName
+app.post('/users/:uid/devices/:deviceName', (req, res) => {
+  let device = {name: req.params.deviceName, messages: [{text: "", date: Date.now()}]}
+  User.findByIdAndUpdate({_id: req.params.uid}, {$push:{devices:device}}, {new:true})
+  .then(user => {
+    if (user) res.status(201).json(user.devices)
+    else res.status(400).json({error: "Something went wrong."})
+  })
+});
+
 
 app.delete('devices/remove', (req, res) => {
   //mongo stuff
