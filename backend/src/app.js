@@ -35,8 +35,9 @@ app.post('/register', (req,res) => {
   User.create({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
+    email: req.body.email,
     password: req.body.password,
-    devices: req.body.devices
+    devices: []
   }).then(r=>res.json(r))
 })
 
@@ -70,10 +71,18 @@ app.post('/users/:uid/devices/:deviceName', (req, res) => {
   })
 });
 
+//TODO: /users/uid/devices/id
 app.delete('/users/:uid/devices/:id', (req, res) => {
   User.findOne({_id: req.params.uid}).then((user) => {
     res.json(user.devices.splice())
   })
 });
+
+//TODO: /users/:uid/devices/:id/generateLink
+app.get('/users/:uid/devices/:id/generateLink', (req, res) => {
+  User.findOne({_id: req.params.uid}).then((user) => {
+    res.json({email: user.email, link: `localhost:15000/users/Anonymous/devices.../messages`})
+  })
+})
 
 app.listen(port, () => console.log('App is listening on port '+ port +'!'))
