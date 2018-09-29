@@ -77,6 +77,7 @@ class App extends React.Component {
                              <button onClick={() => this.createDevice()}>+</button>
                         </div>
                         )}/>
+
                 </div>
             </BrowserRouter>
         )

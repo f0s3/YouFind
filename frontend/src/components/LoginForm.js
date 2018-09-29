@@ -31,7 +31,7 @@ export default class LoginForm extends Component {
     return (
         <form onSubmit={e => this.handleLogin(e)}>
         <Card>
-            
+
         <label>
             Name <input type="text" value={this.state.name} onChange={e => {this.setState({name: e.target.value})}} />
         </label>
