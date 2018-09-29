@@ -52,7 +52,12 @@ header.masthead {
   background-position: center center;
   background-size: cover;
 }
-
+#registerPage {
+  height: 100%;
+  background-image: url("./header.jpg");
+  background-position: center center;
+  background-size: cover;
+}
 
 
 
@@ -91,6 +96,8 @@ header.masthead h1 {
   text-transform: uppercase;
   border: none;
   border-radius: 300px;
+  padding: 5px 5px 5px 5px;
+  margin-left: 10px;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -101,4 +108,9 @@ header.masthead h1 {
 .btn-primary {
   background-color: #F05F40;
   border-color: #F05F40;
+}
+
+.btn-secondary {
+  background-color: #007bff;
+  border-color: #007bff;
 }

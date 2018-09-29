@@ -30,6 +30,9 @@ export default class RegisterForm extends Component {
 
   render() {
     return (
+      <div id="registerPage">
+      <div>
+
       <form onSubmit={e => this.handleRegister(e)}>
         <label>
             Name <input type="text" value={this.state.name} onChange={e => {this.setState({name: e.target.value})}} />
@@ -42,6 +45,8 @@ export default class RegisterForm extends Component {
         </label>
         <button onClick={e => this.handleRegister(e)}>Register</button>
       </form>
+      </div>
+      </div>
     )
   }
 }
