@@ -6,33 +6,22 @@ export default class RegisterForm extends Component {
     super(props)
     this.state = {
         name: '',
-        password: ''
+        password: '',
+        email: '',
     }
 
     this.handleRegister = this.handleRegister.bind(this)
   }
 
   handleRegister(e) {
-      const name = this.state.name
     axios(
         {
             method: 'POST',
             url: 'http://127.0.0.1:15000/register',
             body: {
-                name,
+                name: this.state.name,
                 password: this.state.password,
-                devices: [
-                    {
-                        name: '',
-                        messages: [
-                            {
-                                author: name,
-                                text: '',
-                                date: Date.now()
-                            }
-                        ]
-                    }
-                ]
+                devices: []
             }
         }
     )
@@ -47,6 +36,9 @@ export default class RegisterForm extends Component {
         </label>
         <label>
             Password <input type="password" value={this.state.password} onChange={e => {this.setState({password: e.target.value})}} />
+        </label>
+        <label>
+            Email <input type="email" value={this.state.email} onChange={e => {this.setState({email: e.target.value})}} />
         </label>
         <button onClick={e => this.handleRegister(e)}>Register</button>
       </form>
