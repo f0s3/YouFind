@@ -34,7 +34,7 @@ export default class RegisterForm extends Component {
             }
         }
     )
-    e.stopPropagation()
+    e.preventDefault()
   }
 
   render() {

@@ -23,7 +23,7 @@ export default class LoginForm extends Component {
             }
         }
     )
-    e.stopPropagation()
+    e.preventDefault()
   }
 
   render() {
