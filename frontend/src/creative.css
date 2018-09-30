@@ -18,6 +18,11 @@ body {
   overflow-y: hidden;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
 hr {
   max-width: 50px;
   border-width: 3px;
@@ -54,7 +59,27 @@ header.masthead {
   background-position: center center;
   background-size: cover;
 }
+#registerPage {
+  height: 100%;
+  background-image: url("./header.jpg");
+  background-position: center center;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 
+}
+
+#loginPage {
+  height: 100%;
+  background-image: url("./header.jpg");
+  background-position: center center;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+}
 
 
 
@@ -83,8 +108,6 @@ header.masthead h1 {
 }
 
 
-
-
 /*portfolio-box was here*/
 
 
@@ -93,6 +116,7 @@ header.masthead h1 {
   text-transform: uppercase;
   border: none;
   border-radius: 300px;
+  padding: 5px 5px 5px 5px;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -103,4 +127,12 @@ header.masthead h1 {
 .btn-primary {
   background-color: #F05F40;
   border-color: #F05F40;
+}
+
+.btn-secondary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.btn-landing{
+  margin-left: 10px;
 }

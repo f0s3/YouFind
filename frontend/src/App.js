@@ -1,15 +1,12 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './creative.css';
-import MessageList from './components/MessageList'
-import SendMessageForm from './components/SendMessageForm'
 import LandingPage from './components/LandingPage'
-import { Route, BrowserRouter, Redirect, Link } from 'react-router-dom'
 import DevicesChat from './components/DevicesChat'
+import { Route, BrowserRouter, Redirect, Link } from 'react-router-dom'
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import axios from 'axios';
-import QRCode from 'qrcode.react'
 
 
 class App extends React.Component {
@@ -59,14 +56,6 @@ class App extends React.Component {
         this.selectDevice(newDevice)
     }
 
-    showEmailCode() {
-        
-    }
-
-    showChatCode() {
-        
-    }
-
     render() {
         return (
             <BrowserRouter>
@@ -77,34 +66,47 @@ class App extends React.Component {
 
                         <Route exact path='/' component={LandingPage} />
 
+                        <Route path='/device/:id' component={DevicesChat} />
+
 
                         {/* <Route path='/devices' render={() => <DevicesChat user={this.state.user} />}/> */}
                         <Route path='/devices' render={() => (
-                         <div id="devices" style={{display: 'flex'}}>
-                             {this.state.user.devices.map((device, index) => {
-                                return (
-                                        <div onClick={device => this.selectDevice(device)} style={{width: '150px', height: '150px', background: '#729162'}} key={index}>
-{/*                                             <Link
-                                                to={`/device/${device._id}`}
-                                            >{device.name}</Link>  device._id */}
-                                          
-                                            <p>{device.name}</p> {/* device._id */}
+                         <div id="devices">
+                            <div style={{display:'flex', flexDirection:'column'}}>
+                                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f0f0f0', textAlign: 'center', color: 'black'}}>
+                                   {this.state.user.devices.map((device, index) => {
+                                     return (
+                                         <div onClick={device => this.selectDevice(device)} style={{margin: '5px', padding: '5px', boxShadow: '-3px 3px 5px #000'}} key={index}>
+                                            <h2>{device.name}</h2> {/* device._id */}
+                                            <hr/>
+                                            <Link
+                                                to={`/device`}
+                                                >Open chat</Link>
+                                            <hr/>
                                             
                                             <button onClick={() => {
                                                 this.setState({renderEmailQR: true})
                                             }}>Email QR</button>
+                                            
                                             {/* <button onClick={() => this.showChatCode()}>Chat QR</button> */}
+                                            {/* /users/Anonymous/devices/${device._id}/messages */}
                                             {
-                                            this.state.renderEmailQR && <QRCode value={`mailto:${this.state.user.email}?subject="Hey, ${this.state.user.name}! I've found your ${this.state.selectedDevice.name}"`} />
+                                                // this.state.renderEmailQR && <img src={`mailto:${this.state.user.email}?subject="Hey, ${this.state.user.name}! I've found your ${this.state.selectedDevice.name}"`} />
+                                                this.state.renderEmailQR && <img src={
+                                                    `https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3ADevice%20found!%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`
+                                                } />
                                             }
                                             </div>
                                 )
-                             })}
-                             <input value={this.state.newDeviceName} onChange={e => this.setState({newDeviceName: e.target.value})} />
-                             <button onClick={() => this.createDevice()}>+</button>
-                        </div>
+                            })}
+                                </div>
+                                <div style={{justifyContent: 'center', display: 'flex'}}>
+                                    <input value={this.state.newDeviceName} onChange={e => this.setState({newDeviceName: e.target.value})} />
+                                    <button onClick={() => this.createDevice()} className="btn btn-xl btn-primary">+</button>
+                                </div>
+                                </div>
+                             </div>
                         )}/>
-
                 </div>
             </BrowserRouter>
         )

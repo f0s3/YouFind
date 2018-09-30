@@ -12,7 +12,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cors());
 
-//DONE: /login
+//DONE: (POST) /register
+app.post('/register', (req,res) => {
+  console.log(req.body)
+  User.create({
+    _id: new mongoose.Types.ObjectId(),
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    devices: []
+  }).then(r=>res.json(r))
+})
+
+//DONE: (GET) /login/username/password
 app.get('/login/:username/:password', (req, res) => {
   User.findOne({name: req.params.username, password: req.params.password})
   .then(user => {
@@ -21,7 +33,18 @@ app.get('/login/:username/:password', (req, res) => {
   })
 });
 
-//DONE: /users/uid
+//DONE: (GET) /users
+app.get('/users', (req, res) => {
+  User.find().then(users => res.json(users))
+})
+
+//DONE: (GET) /users/uid
+app.get('/users/:uid', (req, res) => {
+User.findById(req.params.uid)
+  .then(user => res.json(user))
+});
+
+//DONE: (DELETE) /users/uid
 app.delete('/users/:uid', (req, res) => {
   User.findByIdAndRemove(req.params.uid)
   .then(user => {
@@ -29,29 +52,7 @@ app.delete('/users/:uid', (req, res) => {
   })
 })
 
-//DONE: /register
-app.post('/register', (req,res) => {
-  console.log(req.body)
-  User.create({
-    _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
-    password: req.body.password,
-    devices: req.body.devices
-  }).then(r=>res.json(r))
-})
-
-//DONE: /users
-app.get('/users', (req, res) => {
-  User.find().then(users => res.json(users))
-})
-
-//DONE: /users/uid
-app.get('/users/:uid', (req, res) => {
-User.findById(req.params.uid)
-  .then(user => res.json(user))
-});
-
-//DONE: /users/uid/devices
+//DONE: (GET) /users/uid/devices
 app.get('/users/:uid/devices', (req, res) => {
   User.findOne({_id: req.params.uid})
   .then(user => {
@@ -60,7 +61,7 @@ app.get('/users/:uid/devices', (req, res) => {
   })
 });
 
-//DONE: /users/uid/devices/deviceName
+//DONE: (POST) /users/uid/devices/deviceName
 app.post('/users/:uid/devices/:deviceName', (req, res) => {
   let device = {name: req.params.deviceName, messages: [{text: "", date: Date.now()}]}
   User.findByIdAndUpdate({_id: req.params.uid}, {$push:{devices:device}}, {new:true})
@@ -70,10 +71,56 @@ app.post('/users/:uid/devices/:deviceName', (req, res) => {
   })
 });
 
+//DONE: (DELETE) /users/uid/devices/id
 app.delete('/users/:uid/devices/:id', (req, res) => {
-  User.findOne({_id: req.params.uid}).then((user) => {
-    res.json(user.devices.splice())
+  User.findById(req.params.uid,(err,user) => {
+    let devices = user.devices
+    console.log(devices)
+    for (let i = 0;i < devices.length;i++) if (req.params.id == devices[i]._id) devices.splice(i,1);
+    user.devices = [{      //_id: mongoose.Schema.Types.ObjectId,
+          name: "nnasd",
+          incidents: 1,
+          messages: [{
+            text: "String",
+            date: new Date()
+          }]}]
+    user.save((err, prod) => {
+      res.json(prod)
+    })
   })
 });
+
+//DONE: (GET) /users/:uid/devices/:id/generateLink
+app.get('/users/:uid/devices/:id/generateLink', (req, res) => {
+  User.findOne({_id: req.params.uid}).then((user) => {
+    res.json({email: user.email, link: `localhost:15000/users/Anonymous/${req.params.id}/messages`})
+  })
+})
+
+//DONE: (GET) /users/uid/devices/deviceId/messages
+app.get('/users/:uid/devices/:deviceId/messages', (req, res) => {
+  User.findById({_id: req.params.uid})
+  .then(user => {
+    let devices = user.devices;
+    for (let i = 0;i < devices.length;i++) {
+      if (devices[i]._id == req.params.deviceId) {
+        res.json(devices[i].messages);
+      }
+    }
+  })
+})
+
+//DONE: (POST) /users/uid/devices/deviceId/messages
+app.post('/users/:uid/devices/:deviceId/messages', (req, res) => {
+  User.findById(req.params.uid,(err,user) => {
+    console.log(user.devices)
+    let device= user.devices.find(ks=> ks._id==req.params.deviceId)
+    console.log(req.body, req.body.text)
+    device['messages'] = [...device['messages'], {text: req.body.text, date: new Date()}]
+    user.save((err, prod) => {
+      res.json(prod)
+    })
+  })
+})
 
 app.listen(port, () => console.log('App is listening on port '+ port +'!'))

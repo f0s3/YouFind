@@ -11,8 +11,8 @@ class SendMessageForm extends React.Component {
     render() {
         return (
             <form className="send-message-form" onSubmit={e => {
-                this.props.handleInput(this.state.message)
                 e.preventDefault()
+                this.props.handleInput(this.state.message)
                 }}>
                 <input
                     value={this.state.message}
