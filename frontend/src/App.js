@@ -23,7 +23,7 @@ class App extends React.Component {
         this.createDevice = this.createDevice.bind(this)
     }
 
-    
+
 
     setUser(user) {
         this.setState({user: user.data, redirect: true})
@@ -83,17 +83,17 @@ class App extends React.Component {
                                                 to={`/device`}
                                                 >Open chat</Link>
                                             <hr/>
-                                            
+
                                             <button onClick={() => {
                                                 this.setState({renderEmailQR: true})
                                             }}>Email QR</button>
-                                            
+
                                             {/* <button onClick={() => this.showChatCode()}>Chat QR</button> */}
                                             {/* /users/Anonymous/devices/${device._id}/messages */}
                                             {
                                                 // this.state.renderEmailQR && <img src={`mailto:${this.state.user.email}?subject="Hey, ${this.state.user.name}! I've found your ${this.state.selectedDevice.name}"`} />
                                                 this.state.renderEmailQR && <img src={
-                                                    `https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3ADevice%20found!%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`
+                                                    `https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent(`I've found your ${this.state.selectDevice.name}`)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`
                                                 } />
                                             }
                                             </div>
