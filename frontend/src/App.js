@@ -2,6 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './creative.css';
 import LandingPage from './components/LandingPage'
+import DevicesChat from './components/DevicesChat'
 import { Route, BrowserRouter, Redirect, Link } from 'react-router-dom'
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
@@ -65,9 +66,7 @@ class App extends React.Component {
 
                         <Route exact path='/' component={LandingPage} />
 
-                        <Route path='/device/:id' render={() => {
-                            
-                        }} />
+                        <Route path='/device/:id' component={DevicesChat} />
 
 
                         {/* <Route path='/devices' render={() => <DevicesChat user={this.state.user} />}/> */}
@@ -81,10 +80,9 @@ class App extends React.Component {
                                             <h2>{device.name}</h2> {/* device._id */}
                                             <hr/>
                                             <Link
-                                                to={`/device/${device._id}`}
+                                                to={`/device`}
                                                 >Open chat</Link>
                                             <hr/>
-                                          
                                             
                                             <button onClick={() => {
                                                 this.setState({renderEmailQR: true})
