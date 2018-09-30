@@ -76,7 +76,7 @@ app.delete('/users/:uid/devices/:id', (req, res) => {
   User.findById(req.params.uid,(err,user) => {
     let devices = user.devices
     console.log(devices)
-    for (let i = 0;i < devices.length;i++) Zif (req.params.id == devices[i]._id) devices.splice(i,1);
+    for (let i = 0;i < devices.length;i++) if (req.params.id == devices[i]._id) devices.splice(i,1);
     user.devices = [{      //_id: mongoose.Schema.Types.ObjectId,
           name: "nnasd",
           incidents: 1,
@@ -86,7 +86,6 @@ app.delete('/users/:uid/devices/:id', (req, res) => {
           }]}]
     user.save((err, prod) => {
       res.json(prod)
-
     })
   })
 });
@@ -113,6 +112,16 @@ app.get('/users/:uid/devices/:deviceId/messages', (req, res) => {
 
 //TODO: (POST) /users/uid/devices/deviceId/messages
 app.post('/users/:uid/devices/:deviceId/messages', (req, res) => {
+  User.findById(req.params.uid,(err,user) => {
+console.log(user.devices)
+    let device= user.devices.find(ks=> ks._id==req.params.deviceId)
+    console.log(req.body, req.body.text)
+    device['messages'] = [...device['messages'], {text: req.body.text, date: new Date()}]
+
+    user.save((err, prod) => {
+      res.json(prod)
+    })
+  })
 })
 
 app.listen(port, () => console.log('App is listening on port '+ port +'!'))
