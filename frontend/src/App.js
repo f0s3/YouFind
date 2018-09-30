@@ -31,7 +31,7 @@ class App extends React.Component {
         const newDevice = {
             name: this.state.newDeviceName
         }
-
+/* 
         this.setState({
             user: {
                 devices: this.state.user.devices.concat([newDevice])
@@ -42,7 +42,7 @@ class App extends React.Component {
             method: 'POST',
             url: `http://127.0.0.1:15000/users/${this.state.user._id}/devices/${newDevice.name}`
         })
-
+ */
     }
 
     render() {
@@ -75,7 +75,7 @@ class App extends React.Component {
 
                                             <button onClick={() => {
                                                 this.setState({renderEmailQR: true})
-                                                console.log(`https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent('Found '+this.state.selectedDevice.name)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`)
+                                                // console.log(`https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent('Found '+this.state.selectedDevice.name)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`)
                                             }}>Email QR</button>
 
                                             {/* <button onClick={() => this.showChatCode()}>Chat QR</button> */}
