@@ -20,24 +20,14 @@ class App extends React.Component {
             selectedDevice: null
         }
 
-        this.createDevice = this.createDevice.bind(this)
     }
-
-
 
     setUser(user) {
         this.setState({user: user.data, redirect: true})
-    alert()
-
     }
 
     selectDevice(device) {
-        this.setState({
-            selectedDevice: device
-        })
-    }
-
-    createDevice() {
+        this.setState({selectedDevice: device})
         const newDevice = {
             name: this.state.newDeviceName
         }
@@ -53,7 +43,6 @@ class App extends React.Component {
             url: `http://127.0.0.1:15000/users/${this.state.user._id}/devices/${newDevice.name}`
         })
 
-        this.selectDevice(newDevice)
     }
 
     render() {
@@ -66,7 +55,7 @@ class App extends React.Component {
 
                         <Route exact path='/' component={LandingPage} />
 
-                        <Route path='/device/:id' component={DevicesChat} />
+                        <Route path='/device' render={() => <DevicesChat user={this.state.user} device={this.state.selectedDevice} />} />
 
 
                         {/* <Route path='/devices' render={() => <DevicesChat user={this.state.user} />}/> */}
@@ -86,15 +75,14 @@ class App extends React.Component {
 
                                             <button onClick={() => {
                                                 this.setState({renderEmailQR: true})
+                                                console.log(`https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent('Found '+this.state.selectedDevice.name)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`)
                                             }}>Email QR</button>
 
                                             {/* <button onClick={() => this.showChatCode()}>Chat QR</button> */}
                                             {/* /users/Anonymous/devices/${device._id}/messages */}
                                             {
                                                 // this.state.renderEmailQR && <img src={`mailto:${this.state.user.email}?subject="Hey, ${this.state.user.name}! I've found your ${this.state.selectedDevice.name}"`} />
-                                                this.state.renderEmailQR && <img src={
-                                                    `https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent(`I've found your ${this.state.selectDevice.name}`)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`
-                                                } />
+                                                this.state.renderEmailQR && <img src={`https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent('Found '+this.state.selectedDevice.name)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`} />
                                             }
                                             </div>
                                 )
