@@ -19,6 +19,7 @@ class App extends React.Component {
         this.state = {
             user: null,
             newDeviceName: '',
+            renderEmailQR: false,
             selectedDevice: null
         }
 
@@ -52,8 +53,10 @@ class App extends React.Component {
 
         axios({
             method: 'POST',
-            url: `http://127.0.0.1:15000/users/${this.state.user._id}/devices/${this.state.selectedDevice.name}`
+            url: `http://127.0.0.1:15000/users/${this.state.user._id}/devices/${newDevice.name}`
         })
+
+        this.selectDevice(newDevice)
     }
 
     showEmailCode() {
@@ -80,11 +83,13 @@ class App extends React.Component {
                          <div id="devices" style={{display: 'flex'}}>
                              {this.state.user.devices.map((device, index) => {
                                 return (
-                                        <div style={{width: '150px', height: '150px'}} key={index}>
-                                            <Link
+                                        <div onClick={device => this.selectDevice(device)} style={{width: '150px', height: '150px', background: '#729162'}} key={index}>
+{/*                                             <Link
                                                 to={`/device/${device._id}`}
-                                                onClick={device => this.props.selectDevice(device)}
-                                            >{device.name}</Link> {/* device._id */}
+                                            >{device.name}</Link>  device._id */}
+                                          
+                                            <p>{device.name}</p> {/* device._id */}
+                                            
                                             <button onClick={() => {
                                                 this.setState({renderEmailQR: true})
                                             }}>Email QR</button>
