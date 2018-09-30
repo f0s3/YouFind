@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link,Redirect } from 'react-router-dom'
 
 export default class RegisterForm extends Component {
     constructor(props) {
@@ -9,6 +9,7 @@ export default class RegisterForm extends Component {
         name: '',
         password: '',
         email: '',
+        redirect: false
     }
 
     this.handleRegister = this.handleRegister.bind(this)
@@ -16,16 +17,19 @@ export default class RegisterForm extends Component {
 
 handleRegister(e) {
     e.preventDefault()
-    axios({
-            method: 'POST',
-            url: 'http://127.0.0.1:15000/register',
-            body: {
+    axios.post('http://127.0.0.1:15000/register', {
                 name: this.state.name,
                 password: this.state.password,
                 email: this.state.email,
                 devices: []
-            }
         })
+        console.log({
+            name: this.state.name,
+            password: this.state.password,
+            email: this.state.email,
+            devices: []
+        })
+        this.setState({redirect: true})
 }
 
 render() {
@@ -74,7 +78,7 @@ render() {
         <br />
 
         <Link to="/login">Already a member?</Link>
-
+        {this.state.redirect && <Redirect to="/login" />}
       </form>
       </ul>
       </div>
