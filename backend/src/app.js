@@ -110,14 +110,13 @@ app.get('/users/:uid/devices/:deviceId/messages', (req, res) => {
   })
 })
 
-//TODO: (POST) /users/uid/devices/deviceId/messages
+//DONE: (POST) /users/uid/devices/deviceId/messages
 app.post('/users/:uid/devices/:deviceId/messages', (req, res) => {
   User.findById(req.params.uid,(err,user) => {
-console.log(user.devices)
+    console.log(user.devices)
     let device= user.devices.find(ks=> ks._id==req.params.deviceId)
     console.log(req.body, req.body.text)
     device['messages'] = [...device['messages'], {text: req.body.text, date: new Date()}]
-
     user.save((err, prod) => {
       res.json(prod)
     })
