@@ -15,18 +15,17 @@ export default class RegisterForm extends Component {
 }
 
 handleRegister(e) {
-    axios(
-        {
+    e.preventDefault()
+    axios({
             method: 'POST',
             url: 'http://127.0.0.1:15000/register',
             body: {
                 name: this.state.name,
                 password: this.state.password,
+                email: this.state.email,
                 devices: []
             }
-        }
-        )
-    e.preventDefault()
+        })
 }
 
 render() {
