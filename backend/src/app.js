@@ -71,10 +71,23 @@ app.post('/users/:uid/devices/:deviceName', (req, res) => {
   })
 });
 
-//TODO: (DELETE) /users/uid/devices/id
+//DONE: (DELETE) /users/uid/devices/id
 app.delete('/users/:uid/devices/:id', (req, res) => {
-  User.findOne({_id: req.params.uid}).then((user) => {
-    res.json(user.devices.splice())
+  User.findById(req.params.uid,(err,user) => {
+    let devices = user.devices
+    console.log(devices)
+    for (let i = 0;i < devices.length;i++) Zif (req.params.id == devices[i]._id) devices.splice(i,1);
+    user.devices = [{      //_id: mongoose.Schema.Types.ObjectId,
+          name: "nnasd",
+          incidents: 1,
+          messages: [{
+            text: "String",
+            date: new Date()
+          }]}]
+    user.save((err, prod) => {
+      res.json(prod)
+
+    })
   })
 });
 
@@ -84,7 +97,8 @@ app.get('/users/:uid/devices/:id/generateLink', (req, res) => {
     res.json({email: user.email, link: `localhost:15000/users/Anonymous/${req.params.id}/messages`})
   })
 })
-//DONE: (GET) /users/uid/devices/deviceName/messages
+
+//DONE: (GET) /users/uid/devices/deviceId/messages
 app.get('/users/:uid/devices/:deviceId/messages', (req, res) => {
   User.findById({_id: req.params.uid})
   .then(user => {
@@ -97,9 +111,8 @@ app.get('/users/:uid/devices/:deviceId/messages', (req, res) => {
   })
 })
 
-//TODO: (POST) /users/uid/devices/deviceName/messages
-app.post('/users/uid/devices/deviceName/messages' (req, res) => {
-  
+//TODO: (POST) /users/uid/devices/deviceId/messages
+app.post('/users/:uid/devices/:deviceId/messages', (req, res) => {
 })
 
 app.listen(port, () => console.log('App is listening on port '+ port +'!'))
