@@ -16,7 +16,7 @@ class App extends React.Component {
         this.state = {
             user: null,
             newDeviceName: '',
-            renderEmailQR: false,
+            renderEmailQR: null,
             selectedDevice: null
         }
 
@@ -74,7 +74,7 @@ class App extends React.Component {
                                             <hr/>
 
                                             <button onClick={() => {
-                                                this.setState({renderEmailQR: true})
+                                                this.setState({renderEmailQR: index})
                                                 // console.log(`https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent('Found '+this.state.selectedDevice.name)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`)
                                             }}>Email QR</button>
 
@@ -82,7 +82,7 @@ class App extends React.Component {
                                             {/* /users/Anonymous/devices/${device._id}/messages */}
                                             {
                                                 // this.state.renderEmailQR && <img src={`mailto:${this.state.user.email}?subject="Hey, ${this.state.user.name}! I've found your ${this.state.selectedDevice.name}"`} />
-                                                this.state.renderEmailQR && <img src={`https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent('Found '+this.state.selectedDevice.name)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`} />
+                                                (this.state.renderEmailQR === index) && <img src={`https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent('Found '+this.state.selectedDevice.name)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`} />
                                             }
                                             </div>
                                 )
