@@ -72,12 +72,12 @@ class App extends React.Component {
                                                 to={`/device`}
                                                 >Open chat</Link>
                                             <hr/>
-                                            
+
                                             <button onClick={() => {
                                                 this.setState({renderEmailQR: true})
                                                 console.log(`https://chart.googleapis.com/chart?cht=qr&chl=MATMSG%3ATO%3A${encodeURIComponent(this.state.user.email)}%3BSUB%3A${encodeURIComponent('Found '+this.state.selectedDevice.name)}%3BBODY%3A%3B%3B&chs=180x180&choe=UTF-8&chld=L|2`)
                                             }}>Email QR</button>
-                                            
+
                                             {/* <button onClick={() => this.showChatCode()}>Chat QR</button> */}
                                             {/* /users/Anonymous/devices/${device._id}/messages */}
                                             {
