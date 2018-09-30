@@ -23,7 +23,6 @@ export default class LoginForm extends Component {
         }
     )
     console.log(`http://127.0.0.1:15000/login/${this.state.name}/${this.state.password}`)
-    alert()
     this.props.setUser(user)
   }
 
