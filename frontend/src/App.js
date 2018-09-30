@@ -1,11 +1,8 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './creative.css';
-import MessageList from './components/MessageList'
-import SendMessageForm from './components/SendMessageForm'
 import LandingPage from './components/LandingPage'
-import { Route, BrowserRouter, Redirect, Link } from 'react-router-dom'
-import DevicesChat from './components/DevicesChat'
+import { Route, BrowserRouter, Redirect } from 'react-router-dom'
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import axios from 'axios';
@@ -59,14 +56,6 @@ class App extends React.Component {
         this.selectDevice(newDevice)
     }
 
-    showEmailCode() {
-        
-    }
-
-    showChatCode() {
-        
-    }
-
     render() {
         return (
             <BrowserRouter>
@@ -80,15 +69,17 @@ class App extends React.Component {
 
                         {/* <Route path='/devices' render={() => <DevicesChat user={this.state.user} />}/> */}
                         <Route path='/devices' render={() => (
-                         <div id="devices" style={{display: 'flex'}}>
-                             {this.state.user.devices.map((device, index) => {
+                         <div id="devices">
+                             <div style={{display: 'flex', textAlign: 'center', color: 'black'}}>
+                                 {this.state.user.devices.map((device, index) => {
                                 return (
-                                        <div onClick={device => this.selectDevice(device)} style={{width: '150px', height: '150px', background: '#729162'}} key={index}>
+                                        <div onClick={device => this.selectDevice(device)} style={{width: '128px', boxShadow: '3px 3px 3px #000'}} key={index}>
 {/*                                             <Link
                                                 to={`/device/${device._id}`}
                                             >{device.name}</Link>  device._id */}
                                           
-                                            <p>{device.name}</p> {/* device._id */}
+                                            <h2>{device.name}</h2> {/* device._id */}
+                                            <hr/>
                                             
                                             <button onClick={() => {
                                                 this.setState({renderEmailQR: true})
@@ -100,8 +91,9 @@ class App extends React.Component {
                                             </div>
                                 )
                              })}
+                             </div>
                              <input value={this.state.newDeviceName} onChange={e => this.setState({newDeviceName: e.target.value})} />
-                             <button onClick={() => this.createDevice()}>+</button>
+                             <button onClick={() => this.createDevice()} className="btn btn-xl btn-primary">+</button>
                         </div>
                         )}/>
 
